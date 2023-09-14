@@ -48,14 +48,14 @@ def main():
             time.sleep(10)
             continue
 
-        dvmn_response = raw_response.json()
+        dvmn_review_info = raw_response.json()
 
-        if dvmn_response['status'] == 'timeout':
-            timestamp = dvmn_response.get('timestamp_to_request')
+        if dvmn_review_info['status'] == 'timeout':
+            timestamp = dvmn_review_info.get('timestamp_to_request')
             continue
-        timestamp = dvmn_response.get('last_attempt_timestamp')
+        timestamp = dvmn_review_info.get('last_attempt_timestamp')
 
-        new_attempts = dvmn_response['new_attempts']
+        new_attempts = dvmn_review_info['new_attempts']
         for attempt in new_attempts:
             if attempt['is_negative']:
                 bot.send_message(chat_id=chat_id,
