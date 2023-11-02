@@ -29,6 +29,21 @@ python bot.py chat_id
 ```
 Узнать chat_id можно по [ссылке](https://t.me/userinfobot)
 
+### Запуск с помощью Docker
+
+1 Установите [Docker](https://www.docker.com/get-started/)
+
+2 Скачайте образ проекта:
+
+```sh
+docker pull romanrvv/devmanbot
+```
+3 Запустите его(указав свой чат-id):
+
+```sh
+docker run romanrvv/devmanbot chat_id
+```
+
 ## Цели проекта
 
 Код написан в учебных целях — это урок в курсе по Python и веб-разработке на сайте [Devman](https://dvmn.org).
