@@ -11,6 +11,7 @@ from environs import Env
 class MyLogsHandler(logging.Handler):
 
     def __init__(self, bot, chat_id):
+        super().__init__()
         self.chat_id = chat_id
         self.bot = bot
 
