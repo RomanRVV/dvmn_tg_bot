@@ -8,6 +8,17 @@ import telegram
 from environs import Env
 
 
+class MyLogsHandler(logging.Handler):
+
+    def __init__(self, bot, chat_id):
+        self.chat_id = chat_id
+        self.bot = bot
+
+    def emit(self, record):
+        log_message = self.format(record)
+        self.bot.send_message(chat_id=self.chat_id, text=log_message)
+
+
 def main():
     env = Env()
     env.read_env()
@@ -24,12 +35,7 @@ def main():
     bot = telegram.Bot(token=tg_token)
     chat_id = args.chat_id
 
-    class MyLogsHandler(logging.Handler):
-        def emit(self, record):
-            log_message = self.format(record)
-            bot.send_message(chat_id=chat_id, text=log_message)
-
-    bot.logger.addHandler(MyLogsHandler())
+    bot.logger.addHandler(MyLogsHandler(bot, chat_id))
     bot.logger.warning('Бот запущен')
 
     timestamp = None
